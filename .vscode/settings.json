@@ -1,0 +1,9 @@
+{
+    "C_Cpp.default.compilerPath": "c:\\z88dk\\bin\\zcc.exe",
+    "files.associations": {
+        "string.h": "c",
+        "math.h": "c",
+        "compiler.h": "c",
+        "types.h": "c"
+    }
+}
