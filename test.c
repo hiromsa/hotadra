@@ -2,20 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <mz700beep.h>
-
-typedef struct notetype {
-    int length;
-    int pitch;
-    int state;
-    int current_index;
-}note;
-
-typedef struct parttype {
-    int note_index;
-    int end;
-    int note_length;
-    note notes[5];    
-}part;
+// #include <malloc.h>
 
 part beep_part1 = {0,0,5,
     {
@@ -27,36 +14,123 @@ part beep_part1 = {0,0,5,
     }
 };
 
-void mz700_beep_frame(part *part1);
+// typedef struct notetype {
+//     int length;
+//     int pitch;
+//     int state;
+//     int current_index;
+// }note;
+
+// typedef struct parttype {
+//     int note_index;
+//     int end;
+//     int note_length;
+//     note notes[5];    
+// }part;
+
+// extern long heap (); 
+
+void parse_mml(char *part_mml,part *part1);
 
 void main(void) {
+
+    // mallinit();
 
     mz700_beep_init();
 
     part *part1 = &beep_part1;
+    char *part_mml = "o4c4d8e16f8g2";
+    parse_mml(part_mml,part1);
+
+    // part *part1 = (part*)malloc(sizeof(part*)*1);
+    // note *notes = (note*)malloc(sizeof(note*)*5);
+    // part1->notes = notes;
+
     uint16_t play_pitch;
     while(part1->end==0) {
         mz700_beep_frame(part1);
         csleep(1);
     }
     mz700_beep_off();
+
+    // free(part1);
+    // free(notes);
+
+    //   char** dname;
+    // char found_lcd1602;
+    // char buf[10];
+
+    // cnt = iotfindc("device/i2c_a");
+    // if (cnt == -1) return 1;
+
+    // dname = (char**)malloc(sizeof(char*) * cnt);
+
+    // cnt = iotfind("device/i2c_a", dname);
+    // if (cnt == -1) return 1;
+
+    // found_lcd1602 = 0;
+    // for (i = 0; i < cnt; i++)
+    // {
+    //     if (strcmp(dname[i], SLAVE_ADDR_LCD1602) == 0) found_lcd1602 = 1;
+    //     free(dname[i]);
+    // }
+
+    // free(dname);
 }
 
-void mz700_beep_frame(part *part1) {
-    uint16_t play_pitch;
-    note *note1 = &part1->notes[part1->note_index];
-    if (note1->state == 0 ) {
-        play_pitch = note1->pitch;
-        mz700_beep_on(play_pitch);
-        printf("\nSOUND");
-        note1->state = 1;
-    }
-    note1->current_index++;
-    if (note1->current_index >= note1->length) {
-        part1->note_index++;
-        if (part1->note_index>=part1->note_length) {
-            part1->end = 1;
+void parse_mml(char *part_mml,part *part1) {
+    int i = 0;
+    char *command_buff = "     ";
+    char *parameter_buff = "     ";
+    int sharp = 0;
+    int do_parse_command = 0;
+    // int tone_no = 0;    
+    while(part_mml[i] != '\0'){
+        int is_command = 0;
+        int is_param = 0;
+        printf("%c ", part_mml[i]);
+        switch (part_mml[i])
+        {
+            case 'a':
+                do_parse_command = 1;
+                is_command = 1;
+                break;
+            case 'b':
+                do_parse_command = 1;
+                is_command = 1;
+                break;
+            case 'c':
+                do_parse_command = 1;
+                is_command = 1;
+                break;
+            case 'd':
+                do_parse_command = 1;
+                is_command = 1;
+                break;
+            case 'e':
+                do_parse_command = 1;
+                is_command = 1;
+                break;
+            case 'f':
+                do_parse_command = 1;
+                is_command = 1;
+                break;
+            case 'g':
+                is_command = 1;
+                do_parse_command = 1;
+                break;
+            case '0':
+                is_command = 1;
+                do_parse_command = 1;
+                break;
+            default:
+                break;
         }
+
+        i++;
     }
 }
+
+
+
 
