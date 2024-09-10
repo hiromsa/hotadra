@@ -1,8 +1,33 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+//#include <stdlib.h>
+//#include <string.h>
 #include <mz700beep.h>
+#include <mmlparser.h>
 // #include <malloc.h>
+
+
+// #define MEMERY_POOL_SIZE 1024
+// uint8_t memoryPool[MEMERY_POOL_SIZE];
+
+// //  自前のmalloc
+// void* hota_malloc(size_t size) {
+//     static uint8_t* nextFree = memoryPool;
+//     uint8_t* result = nextFree;
+//     nextFree += size;
+//     return result;
+// }
+
+// typedef struct test {
+//     int arr[20]; 
+// } Test;
+
+// void main() {
+//     printf("OK4");
+//     printf("OK5");
+//     static Test test;
+//     printf("OK6");
+// }
+
 
 part beep_part1 = {0,0,5,
     {
@@ -14,33 +39,19 @@ part beep_part1 = {0,0,5,
     }
 };
 
-// typedef struct notetype {
-//     int length;
-//     int pitch;
-//     int state;
-//     int current_index;
-// }note;
-
-// typedef struct parttype {
-//     int note_index;
-//     int end;
-//     int note_length;
-//     note notes[5];    
-// }part;
-
-// extern long heap (); 
-
-void parse_mml(char *part_mml,part *part1);
 
 void main(void) {
 
+    initCommandList();
+
     // mallinit();
+    return 0;
 
     mz700_beep_init();
 
     part *part1 = &beep_part1;
     char *part_mml = "o4c4d8e16f8g2";
-    parse_mml(part_mml,part1);
+    //parse_mml(part_mml,part1);
 
     // part *part1 = (part*)malloc(sizeof(part*)*1);
     // note *notes = (note*)malloc(sizeof(note*)*5);
@@ -78,58 +89,58 @@ void main(void) {
     // free(dname);
 }
 
-void parse_mml(char *part_mml,part *part1) {
-    int i = 0;
-    char *command_buff = "     ";
-    char *parameter_buff = "     ";
-    int sharp = 0;
-    int do_parse_command = 0;
-    // int tone_no = 0;    
-    while(part_mml[i] != '\0'){
-        int is_command = 0;
-        int is_param = 0;
-        printf("%c ", part_mml[i]);
-        switch (part_mml[i])
-        {
-            case 'a':
-                do_parse_command = 1;
-                is_command = 1;
-                break;
-            case 'b':
-                do_parse_command = 1;
-                is_command = 1;
-                break;
-            case 'c':
-                do_parse_command = 1;
-                is_command = 1;
-                break;
-            case 'd':
-                do_parse_command = 1;
-                is_command = 1;
-                break;
-            case 'e':
-                do_parse_command = 1;
-                is_command = 1;
-                break;
-            case 'f':
-                do_parse_command = 1;
-                is_command = 1;
-                break;
-            case 'g':
-                is_command = 1;
-                do_parse_command = 1;
-                break;
-            case '0':
-                is_command = 1;
-                do_parse_command = 1;
-                break;
-            default:
-                break;
-        }
+// void parse_mml(char *part_mml,part *part1) {
+//     int i = 0;
+//     char *command_buff = "     ";
+//     char *parameter_buff = "     ";
+//     int sharp = 0;
+//     int do_parse_command = 0;
+//     // int tone_no = 0;    
+//     while(part_mml[i] != '\0'){
+//         int is_command = 0;
+//         int is_param = 0;
+//         printf("%c ", part_mml[i]);
+//         switch (part_mml[i])
+//         {
+//             case 'a':
+//                 do_parse_command = 1;
+//                 is_command = 1;
+//                 break;
+//             case 'b':
+//                 do_parse_command = 1;
+//                 is_command = 1;
+//                 break;
+//             case 'c':
+//                 do_parse_command = 1;
+//                 is_command = 1;
+//                 break;
+//             case 'd':
+//                 do_parse_command = 1;
+//                 is_command = 1;
+//                 break;
+//             case 'e':
+//                 do_parse_command = 1;
+//                 is_command = 1;
+//                 break;
+//             case 'f':
+//                 do_parse_command = 1;
+//                 is_command = 1;
+//                 break;
+//             case 'g':
+//                 is_command = 1;
+//                 do_parse_command = 1;
+//                 break;
+//             case '0':
+//                 is_command = 1;
+//                 do_parse_command = 1;
+//                 break;
+//             default:
+//                 break;
+//         }
 
-        i++;
-    }
-}
+//         i++;
+//     }
+// }
 
 
 
