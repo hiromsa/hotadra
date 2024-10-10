@@ -3,8 +3,8 @@
 //#include <string.h>
 #include <mz700beep.h>
 #include <mmlparser.h>
+#include <mmlpart.h>
 // #include <malloc.h>
-
 
 // #define MEMERY_POOL_SIZE 1024
 // uint8_t memoryPool[MEMERY_POOL_SIZE];
@@ -17,18 +17,6 @@
 //     return result;
 // }
 
-// typedef struct test {
-//     int arr[20]; 
-// } Test;
-
-// void main() {
-//     printf("OK4");
-//     printf("OK5");
-//     static Test test;
-//     printf("OK6");
-// }
-
-
 part beep_part1 = {0,0,5,
     {
         {50,3416,0,0},
@@ -40,18 +28,33 @@ part beep_part1 = {0,0,5,
 };
 
 
+
+
 void main(void) {
 
-    initCommandList();
+    printf("ok");
+
+    // MMLコマンドセットを初期化
+    static MMLCommandSet mmlCommandSet;
+    MMLCommandSet_initialize(&mmlCommandSet);
+
+    //initCommandList();
+
+    printf("ok");
 
     // mallinit();
-    return 0;
+    //return 0;
 
-    mz700_beep_init();
+    //mz700_beep_init();
 
     part *part1 = &beep_part1;
     char *part_mml = "o4c4d8e16f8g2";
     //parse_mml(part_mml,part1);
+
+    static MMLCommandSet mmlCommandSet;
+    MMLCommandSet_initialize(&mmlCommandSet);
+
+    return 0;
 
     // part *part1 = (part*)malloc(sizeof(part*)*1);
     // note *notes = (note*)malloc(sizeof(note*)*5);
@@ -63,6 +66,9 @@ void main(void) {
         csleep(1);
     }
     mz700_beep_off();
+
+
+
 
     // free(part1);
     // free(notes);
