@@ -2,8 +2,9 @@
 //#include <stdlib.h>
 //#include <string.h>
 #include <mz700beep.h>
-#include <mmlparser.h>
+#include <mmlcommand.h>
 #include <mmlpart.h>
+#include <mmlparser.h>
 // #include <malloc.h>
 
 // #define MEMERY_POOL_SIZE 1024
@@ -16,6 +17,7 @@
 //     nextFree += size;
 //     return result;
 // }
+
 
 part beep_part1 = {0,0,5,
     {
@@ -49,10 +51,13 @@ void main(void) {
 
     part *part1 = &beep_part1;
     char *part_mml = "o4c4d8e16f8g2";
+
+    static MMLParser mmlParser;
+    MMLParser_initialize(&mmlParser, &mmlCommandSet);
     //parse_mml(part_mml,part1);
 
-    static MMLCommandSet mmlCommandSet;
-    MMLCommandSet_initialize(&mmlCommandSet);
+    // static MMLCommandSet mmlCommandSet;
+    // MMLCommandSet_initialize(&mmlCommandSet);
 
     return 0;
 

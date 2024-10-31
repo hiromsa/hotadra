@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <mmlparser.h>
+#include <mmlcommand.h>
 
 /**
  * @brief ノートに関する属性
@@ -8,7 +8,7 @@ typedef struct noteProperty {
     /**
      * @brief ノートの音量
      */
-    int volume;
+    int volume;\
     /**
      * @brief ノートの長さ
      */

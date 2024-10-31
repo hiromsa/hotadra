@@ -1,5 +1,5 @@
 {
-    "C_Cpp.default.compilerPath": "c:\\z88dk\\bin\\zcc.exe",
+    "C_Cpp.default.compilerPath": "c:/z88dk/bin/zcc.exe",
     "files.associations": {
         "string.h": "c",
         "math.h": "c",
